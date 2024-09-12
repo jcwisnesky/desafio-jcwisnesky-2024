@@ -20,7 +20,7 @@ class RecintosZoo {
     this.animaisValidos = Object.keys(this.animais);
   }
 
-  analisaRecintos(animal, quantidade) {
+  analisaRecintos(animal, quantidade, numRecintosDesejados = 5) {
     if (!this.animaisValidos.includes(animal)) {
       return { erro: 'Animal inválido', recintosViaveis: null };
     }
@@ -69,11 +69,9 @@ class RecintosZoo {
       return { erro: 'Não há recinto viável', recintosViaveis: null };
     }
 
-    // Ordenar os recintos viáveis pelo número do recinto
     recintosViaveis.sort((a, b) => a.numero - b.numero);
 
-    // Retornar apenas os recintos especificados no teste
-    const recintosEspecificados = recintosViaveis.slice(0, 3);
+    const recintosEspecificados = recintosViaveis.slice(0, numRecintosDesejados);
 
     return { erro: null, recintosViaveis: recintosEspecificados.map(r => r.descricao) };
   }
